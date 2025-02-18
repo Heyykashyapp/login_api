@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('admin');
 });
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::view('/login', 'login')->name('login');
+Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::view('/admin', 'admin');
+
+
+
+
+

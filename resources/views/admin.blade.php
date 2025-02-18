@@ -58,7 +58,7 @@ button:hover {
             <p id="message"></p>
         </form>
 
-        <a href="/login">
+        <a href="{{ route('login') }}">
             <button class="nav-button">Go to Login</button>
         </a>
     </div>

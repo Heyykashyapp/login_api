@@ -54,33 +54,33 @@ button:hover {
     </div>
 
     <script>
-     
 
 
-        document.getElementById("logout").addEventListener("click", async function() {
-    let token = localStorage.getItem("token");
 
-    if (!token) {
-        alert("No token found. Please login again.");
-        return;
-    }
+        document.getElementById("logout").addEventListener("click", async function () {
+            let token = localStorage.getItem("token");
 
-    let response = await fetch("http://127.0.0.1:8000/api/logout", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token })
-    });
+            if (!token) {
+                alert("No token found. Please login again.");
+                return;
+            }
 
-    let result = await response.json();
-    if (result.status) {
-        localStorage.removeItem("token");
-        window.location.href = "login.html"; 
-    } else {
-        alert(result.message);
-    }
-});
+            let response = await fetch("http://127.0.0.1:8000/api/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ token })
+            });
+
+            let result = await response.json();
+            if (result.status) {
+                localStorage.removeItem("token");
+                window.location.href = "{{route('login')}}";
+            } else {
+                alert(result.message);
+            }
+        });
 
 
     </script>

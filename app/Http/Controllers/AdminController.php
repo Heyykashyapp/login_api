@@ -23,9 +23,16 @@ class AdminController extends Controller
             return response()->json(['status' => false, 'message' => $validator->errors()], 400);
         }
 
+        // $user = User::create([
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password)
+        //     'active_token' => null
+        // ]);
+
         $user = User::create([
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'active_token' => null
         ]);
 
        

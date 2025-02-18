@@ -50,7 +50,7 @@ button:hover {
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <h2>User Login</h2>
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
@@ -80,6 +80,44 @@ button:hover {
                 window.location.href = "dashboard.html";
             }
         });
+    </script> -->
+
+
+
+    <div class="container">
+        <h2>User Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p id="message"></p>
+        </form>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let response = await fetch("http://127.0.0.1:8000/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            let result = await response.json();
+            document.getElementById("message").textContent = result.message;
+
+            if (result.status) {
+                localStorage.setItem("token", result.token);
+                window.location.href = "{{ route('dashboard') }}";
+            }
+        });
     </script>
 </body>
 </html>
+
+
+
+
+
